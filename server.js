@@ -1,14 +1,12 @@
 const express = require('express');  
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
-// const cors = require('cors');
+const cors = require('cors');
 // const knex = require('knex');
 
 // const saltRounds = 10;
 // const myPlaintextPassword = 's0/\/\P4$$w0rD';
 // const someOtherPlaintextPassword = 'not_bacon';
-
-const app = express();
 
 const database = {
 	users: [
@@ -38,9 +36,29 @@ const database = {
 	]
 }
 
+const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', (req, res) => {res.send(database.users);})
+
+app.post('/signin', (req, res) => {
+	// bcrypt.compare(password, hash, function(err, res) {
+	// 	console.log('first guess', res)
+	//   // result == true
+	// });
+	// bcrypt.compare("veggies", hash, function(err, res) {
+	// 	console.log('secnd guess', res)
+	//   // result == false
+	// });
+	if (req.body.email === database.users[0].email &&
+		req.body.password === database.users[0].password) {
+		res.json(database.users[0]);
+	} else {
+		res.status(400).json('error logging in');
+	};
+})
+
 app.get('/profile/:id', (req, res) => {
 	const { id } = req.params;
 	let found = false;
@@ -70,24 +88,8 @@ app.post('/register', (req, res) => {
 	})
 	res.json(database.users[database.users.length-1]);
 })
-app.post('/signin', (req, res) => {
-	// bcrypt.compare("bacon", hash, function(err, res) {
-	// 	console.log('first guess', res)
-	//   // result == true
-	// });
-	// bcrypt.compare("veggies", hash, function(err, res) {
-	// 	console.log('secnd guess', res)
-	//   // result == false
-	// });
-	if (req.body.email === database.users[0].email &&
-		req.body.password === database.users[0].password) {
-		res.json('success');
-	} else {
-		res.status(400).json('error logging in');
-	};
-})
 
-app.post('/image', (req, res) => {
+app.put('/image', (req, res) => {
 	const { id } = req.body;
 	let found = false;
 	database.users.forEach(user => {
