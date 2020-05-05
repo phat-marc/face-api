@@ -1,8 +1,7 @@
 {
   "name": "face-api",
   "version": "1.0.0",
-  "description": "Faceapp Server",
-  "main": "server.js",
+  "main": "script.js",
   "scripts": {
     "start": "nodemon server.js"
   },
@@ -14,7 +13,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.1",
-    "nodemon": "^2.0.3",
     "pg": "^7.18.2"
-  }
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
+  "description": "Faceapp Server"
 }
