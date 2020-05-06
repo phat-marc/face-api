@@ -24,7 +24,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => {res.send(database.users);})
+app.get('/', (req, res) => {res.send('Woohoo its aliiiiiive!!!');})
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) })
 
 // Here is two different ways of writing the same thing, remember to check signin.js changes as well
