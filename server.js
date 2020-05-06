@@ -14,20 +14,20 @@ const image = require('./controllers/image');
 const db = knex({
   client: 'pg',
   connection: {
-    host : process.env.DATABASE_URL,
+    connectionString : process.env.DATABASE_URL,
     ssl: true
   }
 });
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : 'post',
-    database : 'facedb'
-  }
-});
+// const db = knex({
+//   client: 'pg',
+//   connection: {
+//     host : '127.0.0.1',
+//     user : 'postgres',
+//     password : 'post',
+//     database : 'facedb'
+//   }
+// });
 
 const app = express();
 app.use(bodyParser.json());
