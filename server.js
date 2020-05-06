@@ -30,6 +30,7 @@ app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) }
 // Here is two different ways of writing the same thing, remember to check signin.js changes as well
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
 app.post('/signin', signin.handleSignin(db, bcrypt))
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
 app.put('/image', (req, res) => { image.handleImage(req, res, db) })
 
