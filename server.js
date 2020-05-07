@@ -23,9 +23,9 @@ const db = knex({
   client: 'pg',
   connection: {
     host : '127.0.0.1',
-    user : '',
-    password : '',
-    database : ''
+    user : 'postgres',
+    password : 'post',
+    database : 'facedb'
   }
 });
 
@@ -43,4 +43,5 @@ app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
 app.put('/image', (req, res) => { image.handleImage(req, res, db) })
 
-app.listen(process.env.PORT || 5000, () => {console.log(`everything is running smoothly ON ${process.env.PORT}`);})
+// app.listen(process.env.PORT || 5000, () => {console.log(`everything is running smoothly on ${process.env.PORT}`);})
+app.listen(5000, () => {console.log('everything is running smoothly on 5000');})
